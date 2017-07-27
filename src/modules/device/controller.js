@@ -19,7 +19,8 @@ export const registerDevice = async (req, res) => {
 
 
 export const pushNotification = async (req, res) => {
-    const { token } = req.body;
+    const { token } = req.params;
+
     // validate device token
     if (!token) {
         return res.status(400).json({ error: true, message: 'Token must be provided!' });
