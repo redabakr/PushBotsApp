@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const DeviceSchema = new Schema({
-  token: {
+  registrationID: {
     type: String,
     required: true,
     unique: true,

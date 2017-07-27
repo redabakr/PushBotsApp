@@ -3,15 +3,15 @@ import Device from './model';
 import config from './config';
 
 export const registerDevice = async (req, res) => {
-    const { token } = req.body;
-    // validate token
-    if (!token) {
-        return res.status(400).json({ error: true, message: 'Token must be provided!' });
-    } else if (typeof token !== 'string') {
-        return res.status(400).json({ error: true, message: 'Token must be a string!' });
+    const { registrationID } = req.body;
+    // validate registrationID
+    if (!registrationID) {
+        return res.status(400).json({ error: true, message: 'registrationID must be provided!' });
+    } else if (typeof registrationID !== 'string') {
+        return res.status(400).json({ error: true, message: 'registrationID must be a string!' });
     }
-    const newDevice = new Device({ token });
-    // add device token to the db
+    const newDevice = new Device({ registrationID });
+    // add device registrationID to the db
     try {
         return res.status(201).json({ Device: await newDevice.save() });
     } catch (e) {
@@ -21,16 +21,16 @@ export const registerDevice = async (req, res) => {
 
 
 export const pushNotification = async (req, res) => {
-    const { token } = req.params;
+    const { registrationID } = req.params;
 
-    // validate device token
-    if (!token) {
-        return res.status(400).json({ error: true, message: 'Token must be provided!' });
-    } else if (typeof token !== 'string') {
-        return res.status(400).json({ error: true, message: 'Token must be a string!' });
+    // validate device registrationID
+    if (!registrationID) {
+        return res.status(400).json({ error: true, message: 'registrationID must be provided!' });
+    } else if (typeof registrationID !== 'string') {
+        return res.status(400).json({ error: true, message: 'registrationID must be a string!' });
     }
-    // check if device token exists in the db
-    const device = await Device.findOne({ 'token': token });
+    // check if device registrationID exists in the db
+    const device = await Device.findOne({ 'registrationID': registrationID });
     if (!device) {
         return res.status(400).json({ error: true, message: 'Device not exist' });
     }
@@ -39,8 +39,8 @@ export const pushNotification = async (req, res) => {
         // TODO: code to send APN
         const sender = new gcm.Sender(config.API_KEY);
         const message = new gcm.Message({ data: { key1: 'This is a test message' } });
-        const regTokens = [token];
-        sender.send(message, { registrationTokens: regTokens }, function (err, response) {
+        const regregistrationIDs = [registrationID];
+        sender.send(message, { registrationregistrationIDs: regregistrationIDs }, function (err, response) {
             if (err) console.error(err);
             else console.log(response);
         });
