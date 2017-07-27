@@ -1,0 +1,30 @@
+{
+  "name": "pushbots-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon dist/index.js",
+    "build:watch": "babel -w --out-dir=dist ./src",
+    "clean": "rimraf dist",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
+  },
+  "author": "Reda Bakr",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.4",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.3.0",
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1"
+  }
+}
