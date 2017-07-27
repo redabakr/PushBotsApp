@@ -18,7 +18,8 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongoose": "^4.11.4",
-    "morgan": "^1.8.2"
+    "morgan": "^1.8.2",
+    "node-gcm": "^0.14.6"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.23.0",

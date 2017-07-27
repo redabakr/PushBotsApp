@@ -1,4 +1,6 @@
+import gcm from 'node-gcm';
 import Device from './model';
+import config from './config';
 
 export const registerDevice = async (req, res) => {
     const { token } = req.body;
@@ -32,9 +34,17 @@ export const pushNotification = async (req, res) => {
     if (!device) {
         return res.status(400).json({ error: true, message: 'Device not exist' });
     }
-    // send APNs notification
+    // send GCM notification
     try {
         // TODO: code to send APN
+        const sender = new gcm.Sender(config.API_KEY);
+        const message = new gcm.Message({ data: { key1: 'This is a test message' } });
+        const regTokens = [token];
+        sender.send(message, { registrationTokens: regTokens }, function (err, response) {
+            if (err) console.error(err);
+            else console.log(response);
+        });
+
     } catch (e) {
         return res.status(e.status).json({ error: true, message: 'Error with sending APN' });
     }
