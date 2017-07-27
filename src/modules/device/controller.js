@@ -41,8 +41,12 @@ export const pushNotification = async (req, res) => {
         const message = new gcm.Message({ data: { key1: 'This is a test message' } });
         const regregistrationIDs = [registrationID];
         sender.send(message, { registrationregistrationIDs: regregistrationIDs }, function (err, response) {
-            if (err) console.error(err);
-            else console.log(response);
+        if (err) {
+            console.error(err);
+            return res.status(e.status).json({ error: true, message: 'Error with sending APN' });
+        }
+            else{ console.log(response);}
+            return res.status(200).json({ message: 'Notification sent.' });
         });
 
     } catch (e) {
