@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "dev": "NODE_ENV=development nodemon dist/index.js",
     "build:watch": "babel -w --out-dir=dist ./src",
     "clean": "rimraf dist",
@@ -24,8 +24,10 @@
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.0",
     "eslint": "^4.3.0",
     "nodemon": "^1.11.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "sinon": "^2.4.1"
   }
 }
